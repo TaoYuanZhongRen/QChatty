@@ -2,3 +2,6 @@
 /.vs/
 /.vscode/
 /out/
+
+CMakePresets.json
+CMakeUserPresets.json

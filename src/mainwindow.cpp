@@ -6,10 +6,21 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
     initMainWindow();
-    loginDialog = new LoginDialog();
-    setCentralWidget(loginDialog);
+
+    loginDialog = new LoginDialog(this);
     loginDialog->show();
+
+    //创建和注册链接
+    connect(loginDialog, &LoginDialog::switchRegister, this, &MainWindow::SlotSwitchReg);
+    registerDialog = new RegisterDialog(this);
+
+
+    loginDialog->setWindowFlags(Qt::WindowCloseButtonHint | Qt::FramelessWindowHint);
+    registerDialog->setWindowFlags(Qt::WindowCloseButtonHint | Qt::FramelessWindowHint);
+
+    setCentralWidget(loginDialog);
 }
 
 MainWindow::~MainWindow()
@@ -20,4 +31,10 @@ MainWindow::~MainWindow()
 void MainWindow::initMainWindow()
 {
     this->setWindowIcon(QIcon("./pic/QChatty.ico"));
+}
+void MainWindow::SlotSwitchReg()
+{
+    setCentralWidget(registerDialog);
+    loginDialog->hide();
+    registerDialog->show();
 }

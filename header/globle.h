@@ -6,7 +6,7 @@
 #include <functional>
 #include <QStyle>
 #include <QRegularExpression>
-
+#include <iostream>
 extern std::function<void(QWidget*)> repolish;
 
 

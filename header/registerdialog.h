@@ -20,7 +20,7 @@ public slots:
 
 
 private:
-    void showTip(QString tip);
+    void showTip(QString tip, bool b_ok);
 
 private:
     Ui::RegisterDialog *ui;

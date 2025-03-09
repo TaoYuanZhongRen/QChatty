@@ -32,15 +32,22 @@ void RegisterDialog::onGetcodeClicked()
         }
         else
         {
-            showTip(tr("请输入正确的邮箱"));
+            showTip(tr("请输入正确的邮箱"),false);
         }
     }
 }
 
-void RegisterDialog::showTip(QString tip)
+void RegisterDialog::showTip(QString tip, bool b_ok)
 {
+    if (b_ok)
+    {
+		ui->err_tip->setProperty("state", "normal");
+	}
+    else
+    {
+        ui->err_tip->setProperty("state", "err");
+    }
     ui->err_tip->setText(tip);
-    ui->err_tip->setProperty("state", "err");
     repolish(ui->err_tip);
     return;
 }

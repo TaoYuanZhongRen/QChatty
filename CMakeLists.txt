@@ -34,7 +34,7 @@ add_executable(QChatty WIN32
         ${QChatty_INCLUDE_SOURCES}
         ${QChatty_SRC_SOURCES} 
         ${QChatty_UI_FILES} 
-        rc.qrc "header/globle.h" "src/globle.cpp")
+        rc.qrc "header/globle.h" "src/globle.cpp" "header/singleton.h" "src/singleton.cpp")
 
 target_link_libraries(QChatty PRIVATE Qt::Widgets)
 

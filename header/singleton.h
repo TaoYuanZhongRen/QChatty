@@ -7,16 +7,17 @@ template <typename T>
 class Singleton
 {
 protected:
+    //保护模式，保证子类能够调用这个构造函数
     Singleton() = default;
 	Singleton(const Singleton<T>&) = delete;
-    Singleton& operator=(const Singleton<T>&) = delete;
+    Singleton& operator=(const Singleton<T>& st) = delete;
     static std::shared_ptr<T> m_instance;
 public:
     static std::shared_ptr<T> GetInstance()
     {
         static std::once_flag s_flag;
         std::call_once(s_flag, [&]() {
-            m_instance = std::make_shared<T>(new T);
+            m_instance = std::make_shared<T>();    //这里括号内为什么不能用 new T
         });
 
         return m_instance;
@@ -27,7 +28,7 @@ public:
     }
     ~Singleton()
     {
-        std::count<<"this is a singleton destruct"<<std::endl;
+        std::cout<<"this is a singleton destruct"<<std::endl;
     }
 };
 template <typename T>

@@ -10,7 +10,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_BUILD_TYPE Debug)
 
-find_package(Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Widgets Network REQUIRED)
 
 set(QChatty_INCLUDE_SOURCES
     header/logindialog.h
@@ -34,7 +34,7 @@ add_executable(QChatty WIN32
         ${QChatty_INCLUDE_SOURCES}
         ${QChatty_SRC_SOURCES} 
         ${QChatty_UI_FILES} 
-        rc.qrc "header/globle.h" "src/globle.cpp" "header/singleton.h" "src/singleton.cpp")
+        rc.qrc "header/globle.h" "src/globle.cpp" "header/singleton.h" "src/singleton.cpp" "header/httpmgr.h" "src/httpmgr.cpp")
 
 target_link_libraries(QChatty PRIVATE Qt::Widgets)
-
+target_link_libraries(QChatty PRIVATE Qt::Network)

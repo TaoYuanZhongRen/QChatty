@@ -1,7 +1,7 @@
-#include "../header/registerdialog.h"
-#include "../ui/ui_registerdialog.h" 
-#include "../header/globle.h"
-#include "../header/httpmgr.h"
+#include "registerdialog.h"
+#include "ui_registerdialog.h" 
+#include "globle.h"
+#include "httpmgr.h"
 
 #pragma execution_character_set("utf-8")
 
@@ -32,28 +32,28 @@ void RegisterDialog::onGetcodeClicked()
         bool match = regex.match(email).hasMatch();
         if(match)
         {
-            //·¢ËÍhttpÑéÖ¤Âë
+            //å‘é€httpéªŒè¯ç 
         }
         else
         {
-            showTip(tr("ÇëÊäÈëÕıÈ·µÄÓÊÏä"),false);
+            showTip(tr("è¯·è¾“å…¥æ­£ç¡®çš„é‚®ç®±"),false);
         }
     }
 }
 
 void RegisterDialog::initHttpHandlers()
 {
-    //×¢²á»ñÈ¡ÑéÖ¤Âë»Ø°üµÄÂß¼­
+    //æ³¨å†Œè·å–éªŒè¯ç å›åŒ…çš„é€»è¾‘
     _handlers.insert(ReqId::ID_GET_VARIFY_CODE, [this](const QJsonObject& json_obj){
         int error = json_obj["error"].toInt();
         if(error !=ErrorCodes::SUCCESS)
         {
-            showTip(tr("²ÎÊı´íÎó"), true);
+            showTip(tr("å‚æ•°é”™è¯¯"), true);
             return;
         }
 
         auto email = json_obj["email"].toString();
-        showTip(tr("ÑéÖ¤ÂëÒÑ¾­·¢ËÍµ½ÓÊÏä£¬Çë×¢Òâ²éÊÕ"), true);
+        showTip(tr("éªŒè¯ç å·²ç»å‘é€åˆ°é‚®ç®±ï¼Œè¯·æ³¨æ„æŸ¥æ”¶"), true);
         qDebug() << "email is: " << email;
     });
 }
@@ -76,27 +76,27 @@ void RegisterDialog::slot_reg_mod_finish(ReqId id, QString res, ErrorCodes err)
 {
     if (err != ErrorCodes::SUCCESS)
     {
-        showTip(tr("ÍøÂçÇëÇó´íÎó"), true);
+        showTip(tr("ç½‘ç»œè¯·æ±‚é”™è¯¯"), true);
         return;
     }
 
-    //½âÎöJSON ×Ö·û´® res ×ª»¯ÎªQByteArray
+    //è§£æJSON å­—ç¬¦ä¸² res è½¬åŒ–ä¸ºQByteArray
     QJsonDocument json_doc = QJsonDocument::fromJson(res.toUtf8()); 
     if (json_doc.isNull())
     {
-        showTip(tr("json½âÎöÊ§°Ü"), true);
+        showTip(tr("jsonè§£æå¤±è´¥"), true);
         return;
     }
 
-    //json½âÎö´íÎó
+    //jsonè§£æé”™è¯¯
     if (!json_doc.isObject())
     {
-        showTip(tr("json½âÎöÊ§°Ü"), true);
+        showTip(tr("jsonè§£æå¤±è´¥"), true);
         return;
     }
 
     _handlers[id](json_doc.object());
-    showTip(tr("×¢²á³É¹¦"), true);
+    showTip(tr("æ³¨å†ŒæˆåŠŸ"), true);
     return;
     
 }

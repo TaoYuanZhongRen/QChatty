@@ -1,7 +1,7 @@
 #ifndef SINGLETON_H
 #define SINGLETON_H
 
-#include "../header/globle.h"
+#include "globle.h"
 
 template <typename T>
 class Singleton

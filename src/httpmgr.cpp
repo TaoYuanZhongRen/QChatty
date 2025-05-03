@@ -1,4 +1,4 @@
-#include "..\header\httpmgr.h"
+#include "httpmgr.h"
 #include <QNetworkReply> // Add this include for QNetworkReply
 
 HttpMgr::~HttpMgr()

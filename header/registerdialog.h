@@ -2,7 +2,7 @@
 #define REGISTERDIALOG_H
 
 #include <QDialog>
-#include "../header/globle.h"
+#include "globle.h"
 
 namespace Ui {
 class RegisterDialog;

@@ -1,5 +1,5 @@
-#include "../header/mainwindow.h"
-#include "../ui/ui_mainwindow.h"
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     loginDialog = new LoginDialog(this);
     loginDialog->show();
 
-    //´´½¨ºÍ×¢²áÁ´½Ó
+    //åˆ›å»ºå’Œæ³¨å†Œé“¾æŽ¥
     connect(loginDialog, &LoginDialog::switchRegister, this, &MainWindow::SlotSwitchReg);
     registerDialog = new RegisterDialog(this);
 

@@ -30,7 +30,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::initMainWindow()
 {
-    this->setWindowIcon(QIcon("./pic/QChatty.ico"));
+    this->setWindowIcon(QIcon(":/pic/QChatty.ico"));
 }
 void MainWindow::SlotSwitchReg()
 {

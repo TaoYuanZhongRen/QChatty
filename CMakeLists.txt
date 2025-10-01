@@ -10,7 +10,10 @@ project(QChatty VERSION 0.1 LANGUAGES CXX)
 #设置C++标准
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_BUILD_TYPE Debug)
+# 这样在 Linux/macOS 上可以默认 Debug，而在 Windows 下不会冲突。
+if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+    set(CMAKE_BUILD_TYPE Debug CACHE STRING "Build type" FORCE)
+endif()
 
 # 定义用户可配置的选项
 #option(ENABLE_DEBUG "Enable debug output" ON)
@@ -68,12 +71,13 @@ SOURCE_GROUP("Header Files" FILES ${QChatty_HEADER_SOURCES} ${QChatty_MOC_HEADER
 SOURCE_GROUP("UI" FILES ${QChatty_UI_FILES_H} ${QChatty_UI_FILES} )
 SOURCE_GROUP("MOC" FILES ${QChatty_MOC_SRCS})
 
-include_directories(${Project_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
+include_directories(${Project_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} )
 include_directories(./header)
+include_directories(./build)
 
 # 根据程序的cpp文件、头文件以及生成的ui_xxx.h、moc_xxx.cxx、qrc_xxx.cxx
 # 等生成可执行文件，并链接Qt的动态库（Qt的动态库都定义在QT_LIBRARIES变量里了）
-add_executable(QChatty WIN32
+add_executable(QChatty
         ${QChatty_HEADER_SOURCES}
         ${QChatty_SRC_SOURCES} 
         ${QChatty_MOC_HEADERS}

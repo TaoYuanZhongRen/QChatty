@@ -30,30 +30,30 @@ int main(int argc, char *argv[])
     MainWindow w;
 
     //QDesktopWidget* pDesktopWidget = QApplication::desktop();
-    ////»ñÈ¡¿ÉÓÃ×ÀÃæ´óÐ¡
+    ////èŽ·å–å¯ç”¨æ¡Œé¢å¤§å°
     //QRect deskRect = QApplication::desktop()->availableGeometry();
     //qDebug() << "deskRect:" << deskRect.x() << " " << deskRect.y() << endl;
-    ////»ñÈ¡Ö÷ÆÁÄ»·Ö±æÂÊ
+    ////èŽ·å–ä¸»å±å¹•åˆ†è¾¨çŽ‡
     //QRect screenRect = QApplication::desktop()->screenGeometry();
     //qDebug() << "screenRect:" << screenRect.x() << " " << screenRect.y() << endl;
-    ////»ñÈ¡ÆÁÄ»ÊýÁ¿
+    ////èŽ·å–å±å¹•æ•°é‡
     //int nScreenCount = QApplication::desktop()->screenCount();
     //qDebug() << "nScreenCount:" << nScreenCount << endl;
 
     //QScreen* screen = QGuiApplication::primaryScreen();
-    ////»ñÈ¡µ±Ç°Êµ¼ÊÆÁÄ»´óÐ¡
+    ////èŽ·å–å½“å‰å®žé™…å±å¹•å¤§å°
     //QRect rect1 = screen->geometry();
     //qDebug() << "rect1" << rect1.size().width() << rect1.size().height();
     //qDebug() << rect1.topLeft();
     //qDebug() << rect1.bottomRight();
-    ////»ñÈ¡µ±Ç°Êµ¼Ê¿ÉÓÃÆÁÄ»´óÐ¡£¨È¥µôÏÂ±ß¿ò£©
+    ////èŽ·å–å½“å‰å®žé™…å¯ç”¨å±å¹•å¤§å°ï¼ˆåŽ»æŽ‰ä¸‹è¾¹æ¡†ï¼‰
     //QRect rect2 = screen->availableGeometry();
     //qDebug() << "rect2" << rect2.size().width() << rect2.size().height();
     //qDebug() << rect2.topLeft();
     //qDebug() << rect2.bottomRight();
 
-    //int screen_width = rect2.size().width() * 0.75;    //ÉèÖÃ¿ÉÏÔÊ¾²¿·Ö±ÈÀý
-    //int screen_height = rect2.size().height() * 0.75;  //ÉèÖÃ¿ÉÏÔÊ¾²¿·Ö±ÈÀý
+    //int screen_width = rect2.size().width() * 0.75;    //è®¾ç½®å¯æ˜¾ç¤ºéƒ¨åˆ†æ¯”ä¾‹
+    //int screen_height = rect2.size().height() * 0.75;  //è®¾ç½®å¯æ˜¾ç¤ºéƒ¨åˆ†æ¯”ä¾‹
 
 
     //w.resize(screen_width, screen_height);

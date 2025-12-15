@@ -3,8 +3,6 @@
 #include "globle.h"
 #include "httpmgr.h"
 
-#pragma execution_character_set("utf-8")
-
 RegisterDialog::RegisterDialog(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::RegisterDialog)
@@ -36,7 +34,7 @@ void RegisterDialog::onGetcodeClicked()
         }
         else
         {
-            showTip(tr("请输入正确的邮箱"),false);
+            showTip(tr("请输入正确的邮箱"), false);
         }
     }
 }
@@ -60,6 +58,7 @@ void RegisterDialog::initHttpHandlers()
 
 void RegisterDialog::showTip(QString tip, bool b_ok)
 {
+    //qDebug() << QString::fromUtf8("测试中文");
     if (b_ok)
     {
 		ui->err_tip->setProperty("state", "normal");

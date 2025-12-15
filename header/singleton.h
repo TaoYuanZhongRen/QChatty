@@ -7,7 +7,7 @@ template <typename T>
 class Singleton
 {
 protected:
-    //±£»¤Ä£Ê½£¬±£Ö¤×ÓÀàÄÜ¹»µ÷ÓÃÕâ¸ö¹¹Ôìº¯Êı
+    //ä¿æŠ¤æ¨¡å¼ï¼Œä¿è¯å­ç±»èƒ½å¤Ÿè°ƒç”¨è¿™ä¸ªæ„é€ å‡½æ•°
     Singleton() = default;
 	Singleton(const Singleton<T>&) = delete;
     Singleton& operator=(const Singleton<T>& st) = delete;
@@ -17,7 +17,7 @@ public:
     {
         static std::once_flag s_flag;
         std::call_once(s_flag, [&]() {
-            m_instance = std::make_shared<T>();    //ÕâÀïÀ¨ºÅÄÚÎªÊ²Ã´²»ÄÜÓÃ new T
+            m_instance = std::make_shared<T>();    //è¿™é‡Œæ‹¬å·å†…ä¸ºä»€ä¹ˆä¸èƒ½ç”¨ new T
         });
 
         return m_instance;

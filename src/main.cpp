@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
     QFile qss("D:/Code/QChatty/style/stylesheet.qss");
     if (qss.open(QFile::ReadOnly))
     {
-        qDebug() << "Success to open qss file";
+        //qDebug() << "Success to open qss file";
         QString styleSheet = QLatin1String(qss.readAll());
         a.setStyleSheet(styleSheet);
         qss.close();

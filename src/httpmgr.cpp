@@ -15,27 +15,27 @@ void HttpMgr::PostHttpReq(QUrl url, QJsonObject json, ReqId req_id, Modules mod)
     QByteArray data = QJsonDocument(json).toJson();
     QNetworkRequest request(url);
 
-    // ÉèÖÃÇëÇóÍ·£ºÇëÇóÀàĞÍ¡¢Êı¾İ³¤¶È
+    // è®¾ç½®è¯·æ±‚å¤´ï¼šè¯·æ±‚ç±»å‹ã€æ•°æ®é•¿åº¦
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     request.setHeader(QNetworkRequest::ContentLengthHeader, QByteArray::number(data.length()));
     QNetworkReply* reply = m_manager.post(request, data);
 
-    auto self = shared_from_this();  //±£Ö¤ÔÚ»Øµ÷º¯ÊıÖĞ±£Áôshared_ptrµÄÒıÓÃ
+    auto self = shared_from_this();  //ä¿è¯åœ¨å›è°ƒå‡½æ•°ä¸­ä¿ç•™shared_ptrçš„å¼•ç”¨
     QObject::connect(reply, &QNetworkReply::finished, [self, reply, req_id, mod]() {
         if (reply->error() != QNetworkReply::NoError) 
         {
-            // ´¦Àí´íÎó
+            // å¤„ç†é”™è¯¯
             qDebug() << "Error:" << reply->errorString();
-            //·¢ËÍĞÅºÅÍ¨ÖªÍê³É
+            //å‘é€ä¿¡å·é€šçŸ¥å®Œæˆ
             emit self->sig_http_finish(req_id, "", ErrorCodes::ERROR_NETWORK, mod);
             reply->deleteLater();
             return;
         }
         else 
         {
-            // ÎŞ´íÎó£¬´¦ÀíÏìÓ¦Êı¾İ
+            // æ— é”™è¯¯ï¼Œå¤„ç†å“åº”æ•°æ®
             QString responseData = reply->readAll();
-            //·¢ËÍĞÅºÅÍ¨ÖªÍê³É
+            //å‘é€ä¿¡å·é€šçŸ¥å®Œæˆ
             emit self->sig_http_finish(req_id, responseData, ErrorCodes::SUCCESS, mod);
             reply->deleteLater();
             return;
@@ -45,12 +45,12 @@ void HttpMgr::PostHttpReq(QUrl url, QJsonObject json, ReqId req_id, Modules mod)
 void HttpMgr::slot_http_finish(ReqId id, QString res, ErrorCodes err, Modules mod)
 {
     if (mod == Modules::REGISTERMOD) {
-        //·¢ËÍĞÅºÅÍ¨ÖªÖ¸¶¨Ä£¿éhttpÏìÓ¦½áÊø
+        //å‘é€ä¿¡å·é€šçŸ¥æŒ‡å®šæ¨¡å—httpå“åº”ç»“æŸ
         emit sig_reg_mod_finish(id, res, err);
     }
 
     //if (mod == Modules::RESETMOD) {
-    //    //·¢ËÍĞÅºÅÍ¨ÖªÖ¸¶¨Ä£¿éhttpÏìÓ¦½áÊø
+    //    //å‘é€ä¿¡å·é€šçŸ¥æŒ‡å®šæ¨¡å—httpå“åº”ç»“æŸ
     //    emit sig_reset_mod_finish(id, res, err);
     //}
 

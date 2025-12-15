@@ -30,7 +30,7 @@ set(QChatty_MOC_HEADERS
     header/logindialog.h
     header/mainwindow.h
     header/registerdialog.h
-        header/httpmgr.h
+    header/httpmgr.h
 )
 set(QChatty_HEADER_SOURCES
     header/globle.h  
@@ -45,6 +45,12 @@ set(QChatty_SRC_SOURCES
     src/globle.cpp
     src/httpmgr.cpp
 )
+
+# 项目中的资源文件
+# 拷贝到编译链接生成的可执行文件目录下
+file(GLOB PIC ./pic)
+file(COPY ${PIC} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
 # 这一行代码的作用是查找并收集项目中所有 .ui 文件，并将它们存储在一个变量 QChatty_UI_FILES 中。具体来说：
 # file(GLOB ...)：这是 CMake 的一个命令，用于从文件系统中查找匹配特定模式的文件。
 # QChatty_UI_FILES：这是目标变量，用于存储找到的文件路径。
